@@ -1,0 +1,40 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution in ["Rocky"]
+
+- hosts: web_servers
+  become: true
+  tasks:
+  - name: install apache and php for rocky os server
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution == "Rocky"
+
+- hosts: db_servers
+  become: true
+  tasks: 
+
+  - name: install mariadb server on Rocky
+    dnf:
+      name: mariadb
+      state: latest
+    when: ansible_distribution == "Rocky"
+
+- hosts: file_servers
+  become: true
+  tasks: 
+  - name: install samba package
+    package:
+      name: samba
+      state: latest

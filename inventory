@@ -1,2 +1,8 @@
+[web_servers]
 jayanth@10.215.37.44
+
+[db_servers]
 jayanth@10.215.36.88
+
+[file_servers]
+jayanth@10.215.37.241
